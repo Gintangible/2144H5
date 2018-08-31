@@ -1,16 +1,21 @@
 <template>
-  <div>
-    selected
+  <div class="h5-wrap">
+    <slider :sliders="sliders"></slider>
   </div>
 </template>
 
 <script>
+import slider from 'components/slider/slider';
+
 export default {
   data() {
-    return {};
+    return {
+    };
   },
 
-  components: {},
+  components: {
+    slider
+  },
 
   computed: {},
 
