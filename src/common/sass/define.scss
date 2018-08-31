@@ -1,0 +1,101 @@
+@charset "utf-8";
+
+$browser-default-font-size:20;//html根字号20px & 设计图640px
+@function fs($px){
+    @return $px / $browser-default-font-size * 1rem;
+}
+
+
+%oh{overflow:hidden;}
+%oa{overflow:auto;}
+%oya{overflow-y:auto;}
+
+%dn{display:none;}
+%db{display:block;}
+%di{display:inline;}
+%ds{display: sticky;}
+%df{display: flex;}
+%dib{display:inline-block;}
+%dt{display:table;}
+%dtr{display:table-row;}
+%dtc{display:table-cell;}
+
+%fn{float:none;}
+%fl{float:left;}
+%fr{float:right;}
+
+%ps{position:static;}
+%pf{position:fixed;}
+%pr{position:relative;}
+%pa{position:absolute;}
+
+%ma{margin:0 auto;}
+
+%content{content:'\200B';}
+%clearfix:after{
+	content:'\200B';//\200B为Unicode字符里的零宽度空格,即 U+200B
+	display:block;
+	height:0;
+	clear:both;
+}
+
+
+%f0{font-size:0;line-height:0;}
+%fnone{line-height:9999px;@extend %oh;}
+%txtnone{text-indent:-999em;@extend %oh;}
+
+%fsn{font-style:normal;}
+%fsi{font-style:italic;}
+
+%fwn{font-weight:normal;}
+%fwb{font-weight:bold;}
+
+//英文字体和数字字体可使用Helvetica，ios/android/winphone三种系统都支持
+%ffh{font-family:Helvetica;}
+
+
+%tal{text-align:left;}
+%tac{text-align:center;}
+%tar{text-align:right;}
+%taj{text-align:justify;}
+
+%vat{vertical-align:top;}
+%vam{vertical-align:middle;}
+%vab{vertical-align:bottom;}
+%vatt{vertical-align:text-top;}
+%vatb{vertical-align:text-bottom;}
+%vabl{vertical-align:baseline;}
+
+%tdu{text-decoration:underline;}
+%tdn{text-decoration:none;}
+
+%nowrap{white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+%breakall{word-break:break-all;}
+
+
+%c0{color:#000;}
+%c3{color:#333;}
+%c6{color:#666;}
+%c9{color:#999;}
+%cc{color:#ccc;}
+%cfff{color:#fff;}
+
+%bgw{background-color:#fff;}//white
+%bgb{background-color:#000;}//black
+%bgt{background-color:transparent;}
+
+%bdn{border:0 none;}
+
+
+//禁用长按选中文本功能
+%usn{
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+        user-select: none;
+}
+
+//内部边框
+%borderbox {
+-webkit-box-sizing: border-box;
+        box-sizing: border-box;
+}

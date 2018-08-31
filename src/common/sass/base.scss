@@ -1,0 +1,94 @@
+body,
+html {
+    line-height: 1;
+    font-weight: 200;
+    font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif;
+}
+
+@mixin singleHeight($rem) {
+    height: $rem +rem;
+    line-height: $rem+rem;
+}
+
+@mixin bg-image($url) {
+    background-image: url($url + '@2x.png');
+
+    // background-repeat: no-repeat;
+    @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+        background-image: url($url + '@3x.png');
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5),
+(min-device-pixel-ratio: 1.5) {
+    .border-1px {
+        &::after {
+            -webkit-transform: scaleY(.7);
+            transform: scaleY(.7);
+        }
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-device-pixel-ratio: 2) {
+    .border-1px {
+        &::after {
+            -webkit-transform: scaleY(.5);
+            transform: scaleY(.5);
+        }
+    }
+}
+
+@mixin border-bottom-1px($color) {
+    @extend %pr;
+    &:after {
+        content: '';
+        @extend %pa;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid $color;
+    }
+}
+
+@mixin border-top-1px($color) {
+    @extend %pr;
+    &:after {
+        content: '';
+        @extend %pa;
+        left: 0;
+        top: 0;
+        width: 100%;
+        border-top: 1px solid $color;
+    }
+}
+
+@mixin border-left-1px($color) {
+    @extend %pr;
+    &:after {
+        content: '';
+        @extend %pa;
+        left: 0;
+        top: 0;
+        height: 100%;
+        border-top: 1px solid $color;
+    }
+}
+
+@mixin border-right-1px($color) {
+    @extend %pr;
+    &:after {
+        content: '';
+        @extend %pa;
+        right: 0;
+        top: 0;
+        height: 100%;
+        border-top: 1px solid $color;
+    }
+}
+
+@mixin border-none() {
+    &:after {
+        @extend %dn;
+    }
+}
