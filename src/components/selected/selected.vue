@@ -1,13 +1,13 @@
 <template>
   <div class="selected-wrap">
     <div class="slider-wrap">
-      <banner :sliderList="sliderList"></banner>
+      <slider :sliderList="sliderList"></slider>
     </div>
   </div>
 </template>
 
 <script>
-import banner from 'components/slider/slider';
+import slider from 'components/slider/slider';
 
 const URL = 'http://h5.2144.cn';
 const ERR_OK = 200;
@@ -20,7 +20,7 @@ export default {
   },
 
   components: {
-    banner
+    slider
   },
 
   created() {
