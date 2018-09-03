@@ -5,6 +5,9 @@ import App from './App';
 import router from './router';
 import '../static/css/reset.css'; // 引入reset.css 文件
 
+import axios from 'axios';
+Vue.prototype.$axios = axios;
+
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */

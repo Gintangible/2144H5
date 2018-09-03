@@ -1,46 +1,43 @@
 <template>
   <div class="selected-wrap">
     <div class="slider-wrap">
-      <!-- <slider :sliders="sliders"></slider> -->
+      <banner :sliderList="sliderList"></banner>
     </div>
   </div>
 </template>
 
 <script>
-// import slider from 'components/slider/slider';
-import axios from 'axios';
+import banner from 'components/slider/slider';
 
-const URL = 'h5.2144.cn';
+const URL = 'http://h5.2144.cn';
+const ERR_OK = 200;
 
 export default {
   data() {
     return {
-      sliders: {}
+      sliderList: []
     };
   },
 
-  components: {},
+  components: {
+    banner
+  },
 
-  created: {
-    getImgs() {
-      // axios
-      //   .get(URL + '/api/game/carousel', {
-      //     count: 5
-      //   })
-      //   .then(function(response) {
-      //     console.log(response);
-      //     this.sliders = response.data;
-      //   });
-
-        this.$http.get('http://h5.2144.cn/api/game/carousel?callback=jsonp_70CD93D3AE7644BAB53D1A98138FF4B1&count=5').then((response) => {
-          console.log(response);
-        });
-    }
+  created() {
+    this.$axios
+      .get(URL + '/api/game/carousel', {
+        params: {
+          count: 5
+        }
+      })
+      .then(response => {
+        if (response.data.code === ERR_OK) {
+          this.sliderList = response.data.data;
+        }
+      });
   },
 
   computed: {},
-
-  mounted: {},
 
   methods: {}
 };
@@ -53,7 +50,7 @@ export default {
   height: 100%;
   .slider-wrap {
     @extend %pr;
-    width: 100%;
+    width: 100vw;
     min-height: 2.4rem;
   }
 }

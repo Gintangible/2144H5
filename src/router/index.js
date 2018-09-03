@@ -8,7 +8,6 @@ Vue.use(Router);
 
 var routes = [{
         path: '/',
-        name: 'selected',
         component: selected
     },
     {
