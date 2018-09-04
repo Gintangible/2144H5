@@ -1,14 +1,14 @@
 <template>
-    <div class="slider-content">
-        <ul class="slider-item" :style="[sliderActive,{'width': sliderList.length * 100+'vw'}]">
-            <li v-for="(item, index) in sliderList" :key="index" @touchstart="stopSlider($event)" @touchmove="moveSlider($event)" @touchend="leaveSlider($event)">
-                <img :src="getSrc(item,index)">
-            </li>
-        </ul>
-        <ul class="slider-btn">
-            <li v-for="(item, index) in sliderList" :key="index" :class="{'active': index == curSlider}"></li>
-        </ul>
-    </div>
+  <div class="slider-content">
+    <ul class="slider-item" :style="[sliderActive,{'width': sliderList.length * 100+'vw'}]">
+      <li v-for="(item, index) in sliderList" :key="index" @touchstart="stopSlider($event)" @touchmove="moveSlider($event)" @touchend="leaveSlider($event)">
+        <img :src="getSrc(item,index)">
+      </li>
+    </ul>
+    <ul class="slider-btn">
+      <li v-for="(item, index) in sliderList" :key="index" :class="{'active': index == curSlider}"></li>
+    </ul>
+  </div>
 </template>
 
 <script>
