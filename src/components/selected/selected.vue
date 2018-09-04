@@ -1,7 +1,7 @@
 <template>
   <div class="selected-wrap">
     <div class="slider-wrap">
-      <slider :sliderList="sliderList"></slider>
+      <slider :sliderList="sliderList" :src="src"></slider>
     </div>
   </div>
 </template>
@@ -15,7 +15,8 @@ const ERR_OK = 200;
 export default {
   data() {
     return {
-      sliderList: []
+      sliderList: [],
+      src: 'image'
     };
   },
 
@@ -49,9 +50,7 @@ export default {
   width: 100%;
   height: 100%;
   .slider-wrap {
-    @extend %pr;
     width: 100vw;
-    min-height: 2.4rem;
   }
 }
 </style>
