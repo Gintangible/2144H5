@@ -1,15 +1,15 @@
 <template>
-  <div id="app">
-    <div class="content">
-      <router-view></router-view>
+    <div id="app">
+        <div class="content">
+            <router-view></router-view>
+        </div>
+        <div class="bottom-tab border-1px">
+            <router-link class="tab-item tab-selected" to="/" exact>精选</router-link>
+            <router-link class="tab-item tab-game" to="/game">小游戏</router-link>
+            <a class="tab-item tab-community" target="_blank" href="//buluo.qq.com/mobile/barindex.html?_bid=128&amp;_wv=1027&amp;bid=391805">社区</a>
+            <router-link class="tab-item tab-user" to="/user">个人</router-link>
+        </div>
     </div>
-    <div class="bottom-tab border-1px">
-      <router-link class="tab-item tab-selected" to="/" exact>精选</router-link>
-      <router-link class="tab-item tab-game" to="/game">小游戏</router-link>
-      <a class="tab-item tab-community" target="_blank" href="//buluo.qq.com/mobile/barindex.html?_bid=128&amp;_wv=1027&amp;bid=391805">社区</a>
-      <router-link class="tab-item tab-user" to="/user">个人</router-link>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -24,7 +24,7 @@
 }
 
 .content {
-    height: calc(100% - 0.8rem);
+    height: calc(100% - 1.08rem);
 }
 .bottom-tab {
     position: fixed;

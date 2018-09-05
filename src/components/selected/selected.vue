@@ -1,35 +1,35 @@
 <template>
-  <div class="selected-wrap">
-    <div class="explain border-1px">
-      个人学习
-      <span>vue</span>
-    </div>
-    <div class="slider-wrap">
-      <slider :sliderList="sliderList" :src="src"></slider>
-    </div>
-    <div class="game-wrap" v-for="(gameClassfy, index) in gameData" :key="index">
-      <div class="game-list">
-        <h2 class="list-tit tit1">
-          {{gameClassfy.name}}
-        </h2>
-        <div class="game-item" v-for="(item, ii) in gameClassfy.games" :key="ii">
-          <img class="game-icon" :src="item.icon" alt="">
-          <div class="game-intro">
-            <h3 class="game-name">
-              {{item.name}}
-            </h3>
-            <p class="game-slogan">
-              {{item.slogan}}
-            </p>
-          </div>
-          <a class="game-start" :href="item.link_startgame">开始</a>
+    <div class="selected-wrap">
+        <div class="explain border-1px">
+            个人学习
+            <span>vue</span>
         </div>
-      </div>
+        <div class="slider-wrap">
+            <slider :sliderList="sliderList" :src="src"></slider>
+        </div>
+        <div class="game-wrap" v-for="(gameClassfy, index) in gameData" :key="index">
+            <div class="game-list">
+                <h2 class="list-tit" :class="getTit(index)">
+                    {{gameClassfy.name}}
+                </h2>
+                <div class="game-item" v-for="(item, ii) in gameClassfy.games" :key="ii">
+                    <img class="game-icon" :src="item.icon" alt="">
+                    <div class="game-intro">
+                        <h3 class="game-name">
+                            {{item.name}}
+                        </h3>
+                        <p class="game-slogan">
+                            {{item.slogan}}
+                        </p>
+                    </div>
+                    <a class="game-start" :href="item.link_startgame">开始</a>
+                </div>
+            </div>
+        </div>
+        <div class="no-more">
+            没有更多啦~
+        </div>
     </div>
-    <div class="no-more">
-      没有更多啦~
-    </div>
-  </div>
 </template>
 
 <script>
@@ -81,7 +81,11 @@ export default {
 
     computed: {},
 
-    methods: {}
+    methods: {
+        getTit(index) {
+            return 'tit' + index;
+        }
+    }
 };
 </script>
 <style lang='scss' scoped>
@@ -119,22 +123,22 @@ export default {
             @extend %fwb;
             background: url(./title-ico.png) no-repeat;
             background-size: 0.3rem 6rem;
-            &.tit1 {
+            &.tit0 {
                 background-position: 0 0.04rem;
             }
-            &.tit2 {
+            &.tit1 {
                 background-position: 0 -0.7rem;
             }
-            &.tit3 {
+            &.tit2 {
                 background-position: 0 -1.38rem;
             }
-            &.tit4 {
+            &.tit3 {
                 background-position: 0 -2.12rem;
             }
-            &.tit5 {
+            &.tit4 {
                 background-position: 0 -2.93rem;
             }
-            &.tit6 {
+            &.tit5 {
                 background-position: 0 -3.8rem;
             }
         }
