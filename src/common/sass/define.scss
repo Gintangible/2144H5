@@ -13,7 +13,6 @@ $browser-default-font-size:20;//html根字号20px & 设计图640px
 %dn{display:none;}
 %db{display:block;}
 %di{display:inline;}
-%ds{display: sticky;}
 %df{display: flex;}
 %dib{display:inline-block;}
 %dt{display:table;}
@@ -24,7 +23,7 @@ $browser-default-font-size:20;//html根字号20px & 设计图640px
 %fl{float:left;}
 %fr{float:right;}
 
-%ps{position:static;}
+%ps{position:sticky;}
 %pf{position:fixed;}
 %pr{position:relative;}
 %pa{position:absolute;}
