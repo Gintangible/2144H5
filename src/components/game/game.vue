@@ -1,21 +1,21 @@
 <template>
-    <div class="game-list" ref="gameList" @scroll="dataScroll()">
-        <div class="game-item" v-for="(item, index) in gameData" :key="index">
-            <img class="game-icon" :src="item.icon" alt="">
-            <div class="game-intro">
-                <h3 class="game-name">
-                    {{item.name}}
-                </h3>
-                <p class="game-slogan">
-                    {{item.slogan}}
-                </p>
-            </div>
-            <a class="game-start" :href="item.link_startgame">开始</a>
-        </div>
-        <div class="no-more">
-            没有更多啦~
-        </div>
+  <div class="game-list" ref="gameList" @scroll="dataScroll()">
+    <div class="game-item" v-for="(item, index) in gameData" :key="index">
+      <img class="game-icon" :src="item.icon" alt="">
+      <div class="game-intro">
+        <h3 class="game-name">
+          {{item.name}}
+        </h3>
+        <p class="game-slogan">
+          {{item.slogan}}
+        </p>
+      </div>
+      <a class="game-start" :href="item.link_startgame">开始</a>
     </div>
+    <div class="scroll-loading" v-show="loading">
+      {{tips}}
+    </div>
+  </div>
 </template>
 
 <script>
@@ -27,7 +27,9 @@ export default {
         return {
             gameData: [],
             totalPage: '',
-            curPage: 1
+            curPage: 1,
+            loading: false,
+            msgTip: '努力加载中...'
         };
     },
 
@@ -40,6 +42,7 @@ export default {
     computed: {},
 
     mounted() {
+        // window.addEventListener('scroll', this.scrollBottom);
         const box = this.$refs.gameList;
 
         box.addEventListener(
@@ -77,13 +80,13 @@ export default {
                 });
         },
         dataScroll() {
-            // if (this.curPage > this.totalPage) return;
-            // if (
-            //     document.body.scrollTop + window.innerHeight >=
-            //     document.body.offsetHeight
-            // ) {
-            //     this.getGameData();
-            // }
+            const wH = window.screen.height;
+            const dScroll = document.body.scrollTop;
+            const dCH = document.body.clientHeight;
+
+            if (wH + dScroll > dCH) {
+                this.getGameData();
+            }
         }
     }
 };
@@ -133,7 +136,7 @@ export default {
         border: 1px solid #0bacff;
         border-radius: 4px;
     }
-    .no-more {
+    .scroll-loading {
         @include singleHeight(0.8);
         font-size: 0.3rem;
         color: #999;
