@@ -1,21 +1,21 @@
 <template>
-  <div class="game-list" ref="gameList" @scroll="dataScroll()">
-    <div class="game-item" v-for="(item, index) in gameData" :key="index">
-      <img class="game-icon" :src="item.icon" alt="">
-      <div class="game-intro">
-        <h3 class="game-name">
-          {{item.name}}
-        </h3>
-        <p class="game-slogan">
-          {{item.slogan}}
-        </p>
-      </div>
-      <a class="game-start" :href="item.link_startgame">开始</a>
+    <div class="game-list" ref="gameList" @scroll="dataScroll()">
+        <div class="game-item" v-for="(item, index) in gameData" :key="index">
+            <img class="game-icon" :src="item.icon" alt="">
+            <div class="game-intro">
+                <h3 class="game-name">
+                    {{item.name}}
+                </h3>
+                <p class="game-slogan">
+                    {{item.slogan}}
+                </p>
+            </div>
+            <a class="game-start" :href="item.link_startgame">开始</a>
+        </div>
+        <div class="scroll-loading">
+            {{msgTip}}
+        </div>
     </div>
-    <div class="scroll-loading" v-show="loading">
-      {{tips}}
-    </div>
-  </div>
 </template>
 
 <script>
@@ -28,7 +28,7 @@ export default {
             gameData: [],
             totalPage: '',
             curPage: 1,
-            loading: false,
+            dataStatus: false,
             msgTip: '努力加载中...'
         };
     },
@@ -42,18 +42,12 @@ export default {
     computed: {},
 
     mounted() {
-        // window.addEventListener('scroll', this.scrollBottom);
         const box = this.$refs.gameList;
 
         box.addEventListener(
             'scroll',
             () => {
-                if (
-                    document.body.scrollTop + window.innerHeight >=
-                    document.body.offsetHeight
-                ) {
-                    this.getGameData();
-                }
+                this.dataScroll();
             },
             true
         );
@@ -61,6 +55,8 @@ export default {
 
     methods: {
         getGameData() {
+            if (this.dataStatus) return;
+            this.dataStatus = true;
             this.$axios
                 .get(URL + '/api/game/games', {
                     params: {
@@ -76,15 +72,22 @@ export default {
                         this.gameData = this.gameData.concat(
                             response.data.data
                         );
+                        this.dataStatus = false;
                     }
                 });
         },
-        dataScroll() {
-            const wH = window.screen.height;
-            const dScroll = document.body.scrollTop;
-            const dCH = document.body.clientHeight;
 
-            if (wH + dScroll > dCH) {
+        dataScroll() {
+            const gameBox = this.$refs.gameList;
+            const sH = gameBox.scrollHeight;
+            const sT = gameBox.scrollTop;
+            const oH = gameBox.offsetHeight;
+            if (this.curPage > this.totalPage) {
+                this.msgTip = '沒有更多了~ ';
+                return;
+            }
+
+            if (sT + oH + 50 > sH) {
                 this.getGameData();
             }
         }

@@ -26,8 +26,8 @@
                 </div>
             </div>
         </div>
-        <div class="no-more">
-            没有更多啦~
+        <div class="load-wrap">
+            {{loadMsg}}
         </div>
     </div>
 </template>
@@ -43,7 +43,8 @@ export default {
         return {
             sliderList: [],
             src: 'image',
-            gameData: []
+            gameData: [],
+            loadMsg: '加载中...'
         };
     },
 
@@ -63,20 +64,25 @@ export default {
                     this.sliderList = response.data.data;
                 }
             });
-        this.$axios.get(URL + '/api/game/recommend-list').then(response => {
-            if (response.data.code === ERR_OK) {
-                const data = response.data.data;
+        this.$axios
+            .get(URL + '/api/game/recommend-list')
+            .then(response => {
+                if (response.data.code === ERR_OK) {
+                    const data = response.data.data;
 
-                this.gameData = [
-                    data[32],
-                    data[33],
-                    data[34],
-                    data[35],
-                    data[36],
-                    data[6]
-                ];
-            }
-        });
+                    this.gameData = [
+                        data[32],
+                        data[33],
+                        data[34],
+                        data[35],
+                        data[36],
+                        data[6]
+                    ];
+                }
+            })
+            .then(() => {
+                this.loadMsg = '没有更多了~';
+            });
     },
 
     computed: {},
@@ -108,6 +114,7 @@ export default {
 .selected-wrap {
     width: 100%;
     height: 100%;
+    @extend %oa;
     .slider-wrap {
         width: 100vw;
     }
@@ -183,7 +190,7 @@ export default {
             border-radius: 4px;
         }
     }
-    .no-more {
+    .load-wrap {
         @include singleHeight(0.8);
         font-size: 0.3rem;
         color: #999;
