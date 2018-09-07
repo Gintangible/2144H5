@@ -44,7 +44,7 @@ export default {
             sliderList: [],
             src: 'image',
             gameData: [],
-            loadMsg: '加载中...'
+            loadMsg: ''
         };
     },
 
@@ -53,34 +53,32 @@ export default {
     },
 
     created() {
-        this.$axios
-            .get(URL + '/api/game/carousel', {
-                params: {
-                    count: 5
-                }
-            })
-            .then(response => {
-                if (response.data.code === ERR_OK) {
-                    this.sliderList = response.data.data;
-                }
-            });
-        this.$axios
-            .get(URL + '/api/game/recommend-list')
-            .then(response => {
-                if (response.data.code === ERR_OK) {
-                    const data = response.data.data;
+        this.$store.commit('showLoading');
 
-                    this.gameData = [
-                        data[32],
-                        data[33],
-                        data[34],
-                        data[35],
-                        data[36],
-                        data[6]
-                    ];
-                }
-            })
+        this.$axios
+            .all([this.carousel(), this.recommendList()])
+            .then(
+                this.$axios.spread((acct, perms) => {
+                    if (acct.data.code === ERR_OK) {
+                        this.sliderList = acct.data.data;
+                    }
+
+                    if (perms.data.code === ERR_OK) {
+                        const data = perms.data.data;
+
+                        this.gameData = [
+                            data[32],
+                            data[33],
+                            data[34],
+                            data[35],
+                            data[36],
+                            data[6]
+                        ];
+                    }
+                })
+            )
             .then(() => {
+                this.$store.commit('hideLoading');
                 this.loadMsg = '没有更多了~';
             });
     },
@@ -90,6 +88,12 @@ export default {
     methods: {
         getTit(index) {
             return 'tit' + index;
+        },
+        carousel() {
+            return this.$axios.get(URL + '/api/game/carousel');
+        },
+        recommendList() {
+            return this.$axios.get(URL + '/api/game/recommend-list');
         }
     }
 };

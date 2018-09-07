@@ -2,6 +2,7 @@
     <div id="app">
         <div class="content">
             <router-view></router-view>
+            <loading v-if="LOADING"></loading>
         </div>
         <div class="bottom-tab border-1px">
             <router-link class="tab-item tab-selected" to="/" exact>精选</router-link>
@@ -13,6 +14,18 @@
 </template>
 
 <script>
+import loading from 'components/load/load';
+
+export default {
+    components: {
+        loading
+    },
+    computed: {
+        LOADING: function() {
+            return this.$store.state.LOADING;
+        }
+    }
+};
 </script>
 
 <style lang='scss' scoped>
@@ -24,6 +37,7 @@
 }
 
 .content {
+    @extend %pr;
     height: calc(100% - 1.08rem);
 }
 .bottom-tab {

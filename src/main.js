@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import store from './vuex';
 import '../static/css/reset.css'; // 引入reset.css 文件
 
 import axios from 'axios';
@@ -14,6 +15,7 @@ Vue.config.productionTip = false;
 new Vue({
     el: '#app',
     router,
+    store,
     components: {
         App
     },
