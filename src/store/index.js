@@ -5,14 +5,16 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        LOADING: false
+        isLoading: false
     },
     mutations: {
-        showLoading(state) {
-            state.LOADING = true;
-        },
-        hideLoading(state) {
-            state.LOADING = false;
+        updateLoadingState(state, flag) {
+            state.isLoading = flag;
+        }
+    },
+    actions: {
+        onLoading(context, flag) {
+            context.commit('updateLoadingState', flag);
         }
     }
 });

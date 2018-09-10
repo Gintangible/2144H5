@@ -1,21 +1,21 @@
 <template>
-  <div class="game-list" ref="gameList" @scroll="dataScroll()">
-    <div class="game-item" v-for="(item, index) in gameData" :key="index">
-      <img class="game-icon" :src="item.icon" alt="">
-      <div class="game-intro">
-        <h3 class="game-name">
-          {{item.name}}
-        </h3>
-        <p class="game-slogan">
-          {{item.slogan}}
-        </p>
-      </div>
-      <a class="game-start" :href="item.link_startgame">开始</a>
+    <div class="game-list" ref="gameList" @scroll="dataScroll()">
+        <div class="game-item" v-for="(item, index) in gameData" :key="index">
+            <img class="game-icon" :src="item.icon" alt="">
+            <div class="game-intro">
+                <h3 class="game-name">
+                    {{item.name}}
+                </h3>
+                <p class="game-slogan">
+                    {{item.slogan}}
+                </p>
+            </div>
+            <a class="game-start" :href="item.link_startgame">开始</a>
+        </div>
+        <div class="scroll-loading">
+            {{msgTip}}
+        </div>
     </div>
-    <div class="scroll-loading">
-      {{msgTip}}
-    </div>
-  </div>
 </template>
 
 <script>
@@ -36,7 +36,8 @@ export default {
     components: {},
 
     created() {
-        this.getGameData();
+        // this.getGameData();
+        this.firstGetGameDate();
     },
 
     computed: {},
@@ -72,6 +73,8 @@ export default {
                         this.gameData = this.gameData.concat(
                             response.data.data
                         );
+
+                        console.log(2);
                         this.$nextTick(() => {
                             this.dataStatus = false;
                         });
@@ -92,6 +95,11 @@ export default {
             if (sT + oH + 50 > sH) {
                 this.getGameData();
             }
+        },
+        async firstGetGameDate() {
+            // this.$store.commit('showLoading');
+            await this.getGameData();
+            // this.$store.commit('hideLoading');
         }
     }
 };

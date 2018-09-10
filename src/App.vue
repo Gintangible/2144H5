@@ -2,7 +2,7 @@
     <div id="app">
         <div class="content">
             <router-view></router-view>
-            <loading v-if="LOADING"></loading>
+            <loading v-if="isLoading"></loading>
         </div>
         <div class="bottom-tab border-1px">
             <router-link class="tab-item tab-selected" to="/" exact>精选</router-link>
@@ -21,8 +21,8 @@ export default {
         loading
     },
     computed: {
-        LOADING: function() {
-            return this.$store.state.LOADING;
+        isLoading: function() {
+            return this.$store.state.isLoading;
         }
     }
 };

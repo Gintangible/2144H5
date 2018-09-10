@@ -53,7 +53,7 @@ export default {
     },
 
     created() {
-        this.$store.commit('showLoading');
+        // this.$store.commit('showLoading');
 
         this.$axios
             .all([this.carousel(), this.recommendList()])
@@ -78,7 +78,7 @@ export default {
                 })
             )
             .then(() => {
-                this.$store.commit('hideLoading');
+                // this.$store.commit('hideLoading');
                 this.loadMsg = '没有更多了~';
             });
     },
