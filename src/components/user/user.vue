@@ -1,20 +1,22 @@
 <template>
-  <div></div>
+  <div class="user-wrap">
+    user
+  </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
-  },
+    data() {
+        return {};
+    },
 
-  components: {},
+    components: {},
 
-  computed: {},
+    computed: {},
 
-  mounted: {},
+    mounted() {},
 
-  methods: {}
+    methods: {}
 };
 </script>
 <style lang='scss' scoped>

@@ -36,8 +36,7 @@ export default {
     components: {},
 
     created() {
-        // this.getGameData();
-        this.firstGetGameDate();
+        this.getGameData();
     },
 
     computed: {},
@@ -95,11 +94,6 @@ export default {
             if (sT + oH + 50 > sH) {
                 this.getGameData();
             }
-        },
-        async firstGetGameDate() {
-            // this.$store.commit('showLoading');
-            await this.getGameData();
-            // this.$store.commit('hideLoading');
         }
     }
 };
