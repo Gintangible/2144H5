@@ -88,13 +88,10 @@ $browser-default-font-size:20;//html根字号20px & 设计图640px
 
 //禁用长按选中文本功能
 %usn{
--webkit-touch-callout: none;
--webkit-user-select: none;
         user-select: none;
 }
 
 //内部边框
 %borderbox {
--webkit-box-sizing: border-box;
         box-sizing: border-box;
 }
