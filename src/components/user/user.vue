@@ -4,10 +4,10 @@
       <span class="user-notLogin"></span>
       <div class="user-login">登录注册</div>
     </div>
-    <router-link class="link-rz" to="/rz">实名认证</router-link>
+    <router-link class="link-rz" to="/verified">实名认证</router-link>
     <router-link class="link-phone" to="/phone">绑定手机</router-link>
-    <router-link class="link-pwd" to="/pwd">修改密码</router-link>
-    <router-link class="link-kf" to="/kf">联系客服</router-link>
+    <router-link class="link-pwd" to="/repwd">修改密码</router-link>
+    <router-link class="link-kf" to="/service">联系客服</router-link>
   </div>
 </template>
 
