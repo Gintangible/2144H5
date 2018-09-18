@@ -1,7 +1,7 @@
 <template>
   <div class="phone-wrap">
     <div class="tel">
-      手机号：<input id="tel" type="tel" v-model="tel" @change="telVef()">
+      手机号：<input id="tel" type="tel" @input="telVaf">
     </div>
     <div class="tel-vef">
       验证码：<input type="text">
@@ -15,7 +15,6 @@
 export default {
     data() {
         return {
-            tel: '',
             phoneState: false,
             verState: false
         };
@@ -28,9 +27,10 @@ export default {
     mounted() {},
 
     methods: {
-        telVaf() {
-            console.log(this.tel);
-            if (this.tel) {
+        telVaf({ type, target }) {
+            let val = target.value;
+            let reg = /^1[34578]\d{9}$/;
+            if (reg.test(val)) {
                 this.phoneState = true;
             }
         },
@@ -38,6 +38,7 @@ export default {
             if (!this.phoneState) return;
 
             setTimeout(() => {
+                alert('验证码get');
                 this.verState = true;
             }, 300);
         },
