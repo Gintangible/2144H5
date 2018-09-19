@@ -73,7 +73,6 @@ export default {
                             response.data.data
                         );
 
-                        console.log(2);
                         this.$nextTick(() => {
                             this.dataStatus = false;
                         });

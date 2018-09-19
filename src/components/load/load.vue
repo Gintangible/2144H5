@@ -30,6 +30,7 @@ export default {
     top: 0;
     width: 100%;
     height: 100%;
+    z-index: 999;
     .loading-wrap {
         margin: -30px 0 0 -30px;
         @extend %pa;
