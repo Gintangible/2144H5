@@ -1,4 +1,3 @@
-
 <template>
     <div class="dialog">
         <!--外层的遮罩 点击事件用来关闭弹窗，isShow控制弹窗显示 隐藏的props-->
@@ -7,39 +6,52 @@
         <transition name="drop">
             <!--style 通过props 控制内容的样式  -->
             <div class="dialog-content" :style="{top:topDistance+'%',width:widNum+'%',left:leftSite+'%'}" v-if="isShow">
-                <div class="dialog_head back">
+                <div class="dialog-head">
                     <!--弹窗头部 title-->
                     <slot name="header">提示信息</slot>
                 </div>
-                <div class="dialog_main" :style="{paddingTop:pdt+'px',paddingBottom:pdb+'px'}">
+                <div class="dialog-main">
                     <!--弹窗的内容-->
                     <slot name="main">弹窗内容</slot>
                 </div>
                 <!--弹窗关闭按钮-->
-                <div class="foot_close" @click="closeDialog">x</div>
+                <div class="dialog-close" @click="closeDialog">x</div>
             </div>
         </transition>
     </div>
-</template> 
+</template>
 
 <script>
 export default {
     data() {
         return {
             message: '',
-            time: 3000,
-            isShow: true
+            time: 3000
         };
     },
-    mounted() {
-        this.closeDialog();
+    props: {
+        isShow: {
+            type: Boolean,
+            default: false,
+            required: true
+        },
+        widNum: {
+            type: Number,
+            default: 86.5
+        },
+        leftSite: {
+            type: Number,
+            default: 6.5
+        },
+        topDistance: {
+            type: Number,
+            default: 35
+        }
     },
+    mounted() {},
     methods: {
         closeDialog() {
-            var that = this;
-            window.setTimeout(function() {
-                that.isShow = false;
-            }, this.time);
+            this.$emit('on-close');
         }
     }
 };
@@ -76,26 +88,25 @@ export default {
         justify-content: center;
         align-items: center;
         z-index: 300;
-        .dialog_head {
+        .dialog-head {
             @extend %df;
-            width: 86.5%;
-            height: 43px;
+            height: 44px;
             justify-content: center;
             align-items: center;
+            background: #fff;
             border-radius: 10px 10px 0 0;
         }
-        .dialog_main {
-            // 主体内容样式设置
+        .dialog-main {
+            @extend %df;
             justify-content: center;
             align-content: center;
-            width: 86.5%;
             padding: 22px 0 47px 0;
             border-radius: 0 0 10px 10px;
-            background: #ffffff;
+            background: #fff;
         }
-        .foot_close {
+        .dialog-close {
             @extend %df;
-            margin-top: -25px;
+            margin: -25px auto 0;
             width: 50px;
             height: 50px;
             border-radius: 50%;

@@ -1,5 +1,8 @@
 <template>
   <div class="phone-wrap">
+    <dialogComponent :isShow="isShowPublish" @on-close="closeDialog">>
+      <div slot="main">{{message}}</div>
+    </dialogComponent>
     <div class="tel">
       手机号：<input id="tel" type="tel" @input="telVaf">
     </div>
@@ -12,15 +15,20 @@
 </template>
 
 <script>
+import dialogComponent from 'components/dialog/dialog';
 export default {
     data() {
         return {
             phoneState: false,
-            verState: false
+            verState: false,
+            message: '',
+            isShowPublish: false
         };
     },
 
-    components: {},
+    components: {
+        dialogComponent
+    },
 
     computed: {},
 
@@ -38,7 +46,8 @@ export default {
             if (!this.phoneState) return;
 
             setTimeout(() => {
-                alert('验证码get');
+                this.message = '验证码get';
+                this.isShowPublish = true;
                 this.verState = true;
             }, 300);
         },
@@ -46,8 +55,12 @@ export default {
             if (!this.verState) return;
 
             setTimeout(() => {
-                alert('bind phone is ok');
+                this.message = 'bind phone is ok';
+                this.isShowPublish = true;
             }, 300);
+        },
+        closeDialog() {
+            this.isShowPublish = false;
         }
     }
 };
