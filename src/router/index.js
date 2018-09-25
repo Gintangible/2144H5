@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import selected from '@/components/selected/selected';
-import game from '@/components/game/game';
-import user from '@/components/user/user';
-import verified from '@/components/verified/verified';
-import phone from '@/components/phone/phone';
-import repwd from '@/components/repwd/repwd';
-import service from '@/components/service/service';
+import selected from '@/pages/selected/selected';
+import game from '@/pages/game/game';
+import user from '@/pages/user/user';
+import verified from '@/pages/verified/verified';
+import phone from '@/pages/phone/phone';
+import repwd from '@/pages/repwd/repwd';
+import service from '@/pages/service/service';
 
 Vue.use(Router);
 
