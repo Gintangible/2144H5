@@ -1,16 +1,26 @@
 <template>
     <div class="repwd-wrap">
         <span @click="repwd">修改密码</span>
+        <msg :isShow="isMsgShow" @on-disappear="disappear">
+            <div slot="msg">{{message}}</div>
+        </msg>
     </div>
 </template>
 
 <script>
+import msg from 'components/message/message';
+
 export default {
     data() {
-        return {};
+        return {
+            message: '',
+            isMsgShow: false
+        };
     },
 
-    components: {},
+    components: {
+        msg
+    },
 
     computed: {},
 
@@ -18,7 +28,11 @@ export default {
 
     methods: {
         repwd() {
-            alert('repwd');
+            this.message = '修改密码';
+            this.isMsgShow = true;
+        },
+        disappear() {
+            this.isMsgShow = false;
         }
     }
 };

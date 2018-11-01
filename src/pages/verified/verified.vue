@@ -1,5 +1,5 @@
 <template>
-  <div>verified</div>
+  <div>实名认证</div>
 </template>
 
 <script>

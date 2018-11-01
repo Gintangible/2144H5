@@ -15,14 +15,14 @@ axios.interceptors.request.use(function (config) {
     store.dispatch('onLoading', true);
     return config;
 }, function (err) {
-    return Promise.reject(err)
+    return Promise.reject(err);
 });
 
 axios.interceptors.response.use(function (response) {
     store.dispatch('onLoading', false);
     return response;
 }, function (err) {
-    return Promise.reject(err)
+    return Promise.reject(err);
 });
 
 /* eslint-disable no-new */

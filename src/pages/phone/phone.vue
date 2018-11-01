@@ -7,7 +7,7 @@
       手机号：<input id="tel" type="tel" @input="telVaf">
     </div>
     <div class="tel-vef">
-      验证码：<input type="text">
+      验证码：<input type="text" class="vef-number">
       <i class="sent-code" :class="{act: phoneState}" @click="sendCode">发送验证码</i>
     </div>
     <a class="sent-btn" :class="{act: verState}" @click="verSuc">下一步</a>
@@ -44,6 +44,9 @@ export default {
         },
         sendCode() {
             if (!this.phoneState) return;
+
+            let verVal = document.querySelector('.vef-number');
+            if (!verVal.value) return;
 
             setTimeout(() => {
                 this.message = '验证码get';
