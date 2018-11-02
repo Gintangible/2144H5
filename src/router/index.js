@@ -33,27 +33,27 @@ var routes = [{
         path: '/verified',
         component: verified,
         beforeEnter: (to, from, next) => {
-            if ('登录') {
-                next();
-            }
+            // if ('登录') {
+            //     next();
+            // }
         }
     },
     {
         path: '/phone',
         component: phone,
         beforeEnter: (to, from, next) => {
-            if ('登录') {
-                next();
-            }
+            // if ('登录') {
+            //     next();
+            // }
         }
     },
     {
         path: '/repwd',
         component: repwd,
         beforeEnter: (to, from, next) => {
-            if ('登录') {
-                next();
-            }
+            // if ('登录') {
+            //     next();
+            // }
         }
     },
     {

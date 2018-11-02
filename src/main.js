@@ -12,14 +12,14 @@ Vue.prototype.$axios = axios;
 Vue.config.productionTip = false;
 
 axios.interceptors.request.use(function (config) {
-    store.dispatch('onLoading', true);
+    store.dispatch('loading/onLoading', true);
     return config;
 }, function (err) {
     return Promise.reject(err);
 });
 
 axios.interceptors.response.use(function (response) {
-    store.dispatch('onLoading', false);
+    store.dispatch('loading/onLoading', false);
     return response;
 }, function (err) {
     return Promise.reject(err);

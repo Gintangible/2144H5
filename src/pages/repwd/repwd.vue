@@ -1,7 +1,7 @@
 <template>
     <div class="repwd-wrap">
         <span @click="repwd">修改密码</span>
-        <msg :isShow="isMsgShow" @on-disappear="disappear">
+        <msg :isShow="isMsgShow">
             <div slot="msg">{{message}}</div>
         </msg>
     </div>
@@ -30,9 +30,9 @@ export default {
         repwd() {
             this.message = '修改密码';
             this.isMsgShow = true;
-        },
-        disappear() {
-            this.isMsgShow = false;
+            setTimeout(() => {
+                this.isMsgShow = false;
+            }, 800);
         }
     }
 };

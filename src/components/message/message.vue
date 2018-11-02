@@ -32,7 +32,7 @@ export default {
 @import "../../common/sass/index.scss";
 /** 弹窗动画*/
 .fade-enter-active {
-  transition: all 0.5s ease;
+  transition: all 1s ease;
 }
 .fade-enter {
   opacity: 0;
