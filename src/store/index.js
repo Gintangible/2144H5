@@ -5,10 +5,6 @@ import loading from './modules/loading';
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-    modules: {
-        namespaced: true,
-        loading
-    }
     // state: {
     //     isLoading: false
     // },
@@ -21,7 +17,10 @@ const store = new Vuex.Store({
     //     onLoading(context, flag) {
     //         context.commit('updateLoadingState', flag);
     //     }
-    // }
+    // },
+    modules: {
+        loading
+    }
 });
 
 export default store;

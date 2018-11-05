@@ -43,7 +43,7 @@ export default {
 
     mounted() {
         const box = this.$refs.gameList;
-
+        this.$store.dispatch('loading/onLoading', true);
         box.addEventListener(
             'scroll',
             () => {

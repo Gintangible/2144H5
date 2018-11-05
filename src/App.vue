@@ -22,7 +22,7 @@ export default {
     },
     computed: {
         isLoading: function() {
-            return this.$store.state.isLoading;
+            return this.$store.state.loading.isLoading;
         }
     }
 };
