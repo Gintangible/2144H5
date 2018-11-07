@@ -59,7 +59,7 @@ export default {
             color: #0bacff;
 
             &:before {
-                background: url(./assets/bottom_icon2.png) no-repeat;
+                background: url(./assets/images/bottom_icon2.png) no-repeat;
                 background-size: auto 100%;
             }
         }
@@ -70,7 +70,7 @@ export default {
             content: '';
             width: 0.54rem;
             height: 0.54rem;
-            background: url(./assets/bottom_icon1.png) no-repeat;
+            background: url(./assets/images/bottom_icon1.png) no-repeat;
             background-size: auto 100%;
         }
 

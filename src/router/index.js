@@ -7,12 +7,20 @@ import verified from '@/pages/verified/verified';
 import phone from '@/pages/phone/phone';
 import repwd from '@/pages/repwd/repwd';
 import service from '@/pages/service/service';
+import login from '@/pages/login/login';
+import {
+    getCookie
+} from '@/assets/js/cookie';
 
 Vue.use(Router);
 
 var routes = [{
         path: '/',
         component: selected
+    },
+    {
+        path: '/login',
+        component: login
     },
     {
         path: '/selected',
@@ -33,27 +41,39 @@ var routes = [{
         path: '/verified',
         component: verified,
         beforeEnter: (to, from, next) => {
-            // if ('登录') {
-            //     next();
-            // }
+            if (getCookie('isLogin')) {
+                next();
+            } else {
+                next({
+                    path: '/login'
+                });
+            }
         }
     },
     {
         path: '/phone',
         component: phone,
         beforeEnter: (to, from, next) => {
-            // if ('登录') {
-            //     next();
-            // }
+            if (getCookie('isLogin')) {
+                next();
+            } else {
+                next({
+                    path: '/login'
+                });
+            }
         }
     },
     {
         path: '/repwd',
         component: repwd,
         beforeEnter: (to, from, next) => {
-            // if ('登录') {
-            //     next();
-            // }
+            if (getCookie('isLogin')) {
+                next();
+            } else {
+                next({
+                    path: '/login'
+                });
+            }
         }
     },
     {

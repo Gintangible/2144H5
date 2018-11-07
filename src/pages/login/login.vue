@@ -1,0 +1,52 @@
+<template>
+    <div class="repwd-wrap">
+        登陆模块
+    </div>
+</template>
+
+<script>
+import msg from 'components/message/message';
+
+export default {
+    data() {
+        return {
+            message: '',
+            isMsgShow: false
+        };
+    },
+
+    components: {
+        msg
+    },
+
+    computed: {},
+
+    mounted() {},
+
+    methods: {
+        repwd() {
+            this.message = '修改密码';
+            this.isMsgShow = true;
+            setTimeout(() => {
+                this.isMsgShow = false;
+            }, 800);
+        }
+    }
+};
+</script>
+<style lang='scss' scoped>
+@import '../../common/sass/index.scss';
+.repwd-wrap {
+    @extend %df;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    span {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.4rem;
+        border: 1px solid #ccc;
+        border-radius: 0.4rem;
+    }
+}
+</style>
