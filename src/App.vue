@@ -30,6 +30,7 @@ export default {
         this.$axios.get('/login').then(response => {
             if (response.data.code === ERR_OK) {
                 console.log(response.data);
+                this.$store.dispatch('login/loginData', response.data);
             }
         });
     }
