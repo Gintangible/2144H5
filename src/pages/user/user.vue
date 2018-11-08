@@ -1,20 +1,26 @@
 <template>
-  <div class="user-wrap">
-    <div class="user-data">
-      <span class="user-notLogin"></span>
-      <div class="user-login">登录注册</div>
+    <div class="user-wrap">
+        <div class="user-data" v-if="!islogin">
+            <span class="user-notLogin"></span>
+            <div class="user-login">登录注册</div>
+        </div>
+        <div class="user-data" v-else>
+            <span class="user-notLogin"></span>
+            <div class="user-login">注销</div>
+        </div>
+        <router-link class="link-rz" to="/verified">实名认证</router-link>
+        <router-link class="link-phone" to="/phone">绑定手机</router-link>
+        <router-link class="link-pwd" to="/repwd">修改密码</router-link>
+        <router-link class="link-kf" to="/service">联系客服</router-link>
     </div>
-    <router-link class="link-rz" to="/verified">实名认证</router-link>
-    <router-link class="link-phone" to="/phone">绑定手机</router-link>
-    <router-link class="link-pwd" to="/repwd">修改密码</router-link>
-    <router-link class="link-kf" to="/service">联系客服</router-link>
-  </div>
 </template>
 
 <script>
 export default {
     data() {
-        return {};
+        return {
+            islogin: true
+        };
     },
 
     components: {},

@@ -15,6 +15,7 @@
 
 <script>
 import loading from 'components/load/load';
+const ERR_OK = 200;
 
 export default {
     components: {
@@ -24,6 +25,13 @@ export default {
         isLoading: function() {
             return this.$store.state.loading.isLoading;
         }
+    },
+    created() {
+        this.$axios.get('/login').then(response => {
+            if (response.data.code === ERR_OK) {
+                console.log(response.data);
+            }
+        });
     }
 };
 </script>

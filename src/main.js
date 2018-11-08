@@ -9,6 +9,9 @@ import '../static/css/reset.css'; // 引入reset.css 文件
 import axios from 'axios';
 Vue.prototype.$axios = axios;
 
+// 引入mockjs
+require('./mock.js');
+
 Vue.config.productionTip = false;
 
 axios.interceptors.request.use(function (config) {
