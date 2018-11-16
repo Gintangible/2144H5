@@ -27,7 +27,7 @@ export default {
                 .dispatch('user/getUserInfo', this.nameText)
                 .then(res => {
                     console.log('login success');
-                    // this.$router.push({ path: '/user' });
+                    this.$router.push({ path: '/user' });
                 })
                 .catch(err => {
                     console.error('user logout fail' + err);
