@@ -28,6 +28,29 @@ axios.interceptors.response.use(function (response) {
     return Promise.reject(err);
 });
 
+router.beforeEach((to, from, next) => {
+    // const token = store.getters.userInfo;
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        next();
+    } else {
+        next();
+        // if (token) {
+        //     next();
+        // } else {
+        //     next({
+        //         path: '/login'
+        //     });
+            // if (to.path === "/login") {
+            //     next();
+            // } else {
+            //     next({
+            //         path: '/login'
+            //     });
+            // }
+        // }
+    }
+});
+
 /* eslint-disable no-new */
 new Vue({
     el: '#app',

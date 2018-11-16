@@ -2,11 +2,11 @@
     <div class="user-wrap">
         <div class="user-data" v-if="!islogin">
             <span class="user-notLogin"></span>
-            <div class="user-login">登录注册</div>
+            <router-link class="user-login" to="/login">登录注册</router-link>
         </div>
         <div class="user-data" v-else>
             <span class="user-notLogin"></span>
-            <div class="user-login">注销</div>
+            <div class="user-login" @click="logOut">注销</div>
         </div>
         <router-link class="link-rz" to="/verified">实名认证</router-link>
         <router-link class="link-phone" to="/phone">绑定手机</router-link>
@@ -29,7 +29,18 @@ export default {
 
     mounted() {},
 
-    methods: {}
+    methods: {
+        logOut() {
+            this.$store
+                .dispatch('user/logOut')
+                .then(() => {
+                    this.$router.push({ path: '/login' });
+                })
+                .catch(err => {
+                    console.error('user logout fail' + err);
+                });
+        }
+    }
 };
 </script>
 <style lang='scss' scoped>

@@ -15,7 +15,7 @@
 
 <script>
 import loading from 'components/load/load';
-const ERR_OK = 200;
+// const ERR_OK = 200;
 
 export default {
     components: {
@@ -27,12 +27,12 @@ export default {
         }
     },
     created() {
-        this.$axios.get('/login').then(response => {
-            if (response.data.code === ERR_OK) {
-                console.log(response.data);
-                this.$store.dispatch('login/loginData', response.data);
-            }
-        });
+        // this.$axios.get('/login').then(response => {
+        //     if (response.data.code === ERR_OK) {
+        //         console.log(response.data);
+        //         this.$store.dispatch('login/loginData', response.data);
+        //     }
+        // });
     }
 };
 </script>

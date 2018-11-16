@@ -1,13 +1,13 @@
 // 用export把方法暴露出来
 // 设置cookie
-export function setCookie(name, value, expire) {
+function setCookie(name, value, expire) {
     var date = new Date();
     date.setSeconds(date.getSeconds() + expire);
     document.cookie = name + '=' + escape(value) + '; expires=' + date.toGMTString();
 }
 
 // 获取cookie
-export function getCookie(name) {
+function getCookie(name) {
     if (document.cookie.length > 0) {
         let start = document.cookie.indexOf(name + '=');
         if (start !== -1) {
@@ -21,6 +21,12 @@ export function getCookie(name) {
 }
 
 // 删除cookie
-export function delCookie(name) {
+function delCookie(name) {
     setCookie(name, '', -1);
 }
+
+export default {
+    set: setCookie,
+    get: getCookie,
+    del: delCookie
+};

@@ -8,9 +8,6 @@ import phone from '@/pages/phone/phone';
 import repwd from '@/pages/repwd/repwd';
 import service from '@/pages/service/service';
 import login from '@/pages/login/login';
-import {
-    getCookie
-} from '@/assets/js/cookie';
 
 Vue.use(Router);
 
@@ -40,40 +37,22 @@ var routes = [{
     {
         path: '/verified',
         component: verified,
-        beforeEnter: (to, from, next) => {
-            if (getCookie('isLogin')) {
-                next();
-            } else {
-                next({
-                    path: '/login'
-                });
-            }
+        meta: {
+            requiresAuth: true
         }
     },
     {
         path: '/phone',
         component: phone,
-        beforeEnter: (to, from, next) => {
-            if (getCookie('isLogin')) {
-                next();
-            } else {
-                next({
-                    path: '/login'
-                });
-            }
+        meta: {
+            requiresAuth: true
         }
     },
     {
         path: '/repwd',
         component: repwd,
-        beforeEnter: (to, from, next) => {
-            if (getCookie('isLogin')) {
-                next();
-            } else {
-                next({
-                    path: '/login'
-                });
-            }
+        meta: {
+            requiresAuth: true
         }
     },
     {
@@ -83,5 +62,6 @@ var routes = [{
 ];
 export default new Router({
     linkActiveClass: 'active',
-    routes: routes
+    routes: routes,
+    mode: 'history'
 });
