@@ -1,15 +1,19 @@
 <template>
     <div class="user-wrap">
-        <div class="user-data" v-if="!islogin">
+        <div class="user-data" v-if="!token">
             <span class="user-notLogin"></span>
             <router-link class="user-login" to="/login">登录注册</router-link>
         </div>
         <div class="user-data" v-else>
-            <span class="user-notLogin"></span>
-            <div class="user-login" @click="logOut">注销</div>
+            <img class="user-img" :src="avator" alt="">
+            <div class="user-login" @click="logOut">注销 {{name}}</div>
         </div>
-        <router-link class="link-rz" to="/verified">实名认证</router-link>
-        <router-link class="link-phone" to="/phone">绑定手机</router-link>
+        <router-link class="link-rz" to="/verified" v-if="!isVerified">实名认证</router-link>
+        <div class="link-rz" v-else>已实名认证已实名认证</div>
+        <router-link class="link-phone" to="/phone" v-if="!isPhone">绑定手机</router-link>
+        <div class="link-phone" v-else>
+            已绑定手机已绑定手机
+        </div>
         <router-link class="link-pwd" to="/repwd">修改密码</router-link>
         <router-link class="link-kf" to="/service">联系客服</router-link>
     </div>
@@ -19,7 +23,11 @@
 export default {
     data() {
         return {
-            islogin: true
+            token: true,
+            name: '',
+            avator: '',
+            isVerified: false,
+            isPhone: false
         };
     },
 
@@ -27,14 +35,20 @@ export default {
 
     computed: {},
 
-    mounted() {},
+    mounted() {
+        this.token = this.$store.state.user.token;
+        this.name = this.$store.state.user.name;
+        this.avator = this.$store.state.user.avator;
+        this.isVerified = this.$store.state.user.isVerified;
+        this.isPhone = this.$store.state.user.isPhone;
+    },
 
     methods: {
         logOut() {
             this.$store
                 .dispatch('user/logOut')
                 .then(() => {
-                    this.$router.push({ path: '/login' });
+                    // this.$router.push({ path: '/login' });
                 })
                 .catch(err => {
                     console.error('user logout fail' + err);
@@ -63,6 +77,12 @@ export default {
             border-radius: 50%;
             background: url(./notlogin.png) center no-repeat;
             background-size: 0.62rem 0.7rem;
+        }
+        .user-img {
+            width: 1.02rem;
+            height: 1.02rem;
+            border: 1px solid #d6d6d6;
+            border-radius: 50%;
         }
         .user-login {
             margin-left: 0.32em;

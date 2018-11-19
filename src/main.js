@@ -31,7 +31,9 @@ axios.interceptors.response.use(function (response) {
 router.beforeEach((to, from, next) => {
     // const token = store.getters.userInfo;
     if (to.matched.some(record => record.meta.requiresAuth)) {
-        next();
+        next({
+            path: '/login'
+        });
     } else {
         next();
         // if (token) {
@@ -40,13 +42,13 @@ router.beforeEach((to, from, next) => {
         //     next({
         //         path: '/login'
         //     });
-            // if (to.path === "/login") {
-            //     next();
-            // } else {
-            //     next({
-            //         path: '/login'
-            //     });
-            // }
+        // if (to.path === "/login") {
+        //     next();
+        // } else {
+        //     next({
+        //         path: '/login'
+        //     });
+        // }
         // }
     }
 });

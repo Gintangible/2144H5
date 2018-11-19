@@ -25,6 +25,7 @@ export default {
             // if (!this.nameText) return console.log('输入姓名');
             this.$store
                 .dispatch('user/getUserInfo', this.nameText)
+                // .dispatch('user/getUserInfo', this.nameText)
                 .then(res => {
                     console.log('login success');
                     this.$router.push({ path: '/user' });

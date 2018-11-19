@@ -40,8 +40,8 @@ const actions = {
             getInfo(state.token).then((res) => {
                 var data = res.data;
                 if (data.code === DATA_OK) {
-                    Cookie.set('token', data.name);
-                    commit('SET_NAME', data.avatar);
+                    Cookie.set('token', data.token);
+                    commit('SET_NAME', data.name);
                     commit('SET_AVATAR', data.avatar);
                     commit('SET_TOKEN', data.token);
                     commit('SET_ISVERIFIED', data.isVerified);
