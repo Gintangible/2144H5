@@ -1,6 +1,6 @@
 <template>
     <div class="user-wrap">
-        <div class="user-data" v-if="!token">
+        <div class="user-data" v-if="!name">
             <span class="user-notLogin"></span>
             <router-link class="user-login" to="/login">登录注册</router-link>
         </div>
@@ -23,7 +23,7 @@
 export default {
     data() {
         return {
-            token: true,
+            token: '',
             name: '',
             avator: '',
             isVerified: false,
@@ -36,7 +36,6 @@ export default {
     computed: {},
 
     mounted() {
-        this.token = this.$store.state.user.token;
         this.name = this.$store.state.user.name;
         this.avator = this.$store.state.user.avator;
         this.isVerified = this.$store.state.user.isVerified;
@@ -48,7 +47,7 @@ export default {
             this.$store
                 .dispatch('user/logOut')
                 .then(() => {
-                    // this.$router.push({ path: '/login' });
+                    this.$router.push({ path: '/login' });
                 })
                 .catch(err => {
                     console.error('user logout fail' + err);

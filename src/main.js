@@ -5,6 +5,7 @@ import App from './App';
 import router from './router';
 import store from './store';
 import '../static/css/reset.css'; // 引入reset.css 文件
+import Cookie from 'assets/js/cookie';
 
 import axios from 'axios';
 Vue.prototype.$axios = axios;
@@ -30,7 +31,7 @@ axios.interceptors.response.use(function (response) {
 
 router.beforeEach((to, from, next) => {
     // const token = store.getters.userInfo;
-    if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (to.matched.some(record => record.meta.requiresAuth) && Cookie.get('token')) {
         next({
             path: '/login'
         });

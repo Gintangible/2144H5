@@ -29,6 +29,12 @@ const mutations = {
     },
     SET_ISPHONE(state, isPhone) {
         state.isPhone = isPhone;
+    },
+    initState(state) {
+        state.isPhone = false;
+        state.name = '';
+        state.avatar = '';
+        state.isVerified = false;
     }
 };
 const actions = {
@@ -63,6 +69,7 @@ const actions = {
                 if (res.data.code === DATA_OK) {
                     Cookie.del('token');
                     console.log('login out');
+                    commit('initState');
                 }
                 resolve();
             }).catch(error => {

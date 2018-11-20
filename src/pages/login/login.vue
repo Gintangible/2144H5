@@ -21,14 +21,21 @@ export default {
     mounted() {},
 
     methods: {
+        back() {
+            if (window.history.length <= 1) {
+                this.$router.push({ path: '/' });
+            } else {
+                this.$router.go(-1);
+            }
+        },
         handleLogin() {
-            // if (!this.nameText) return console.log('输入姓名');
+            if (!this.nameText) return alert('请输入姓名');
             this.$store
                 .dispatch('user/getUserInfo', this.nameText)
-                // .dispatch('user/getUserInfo', this.nameText)
                 .then(res => {
                     console.log('login success');
-                    this.$router.push({ path: '/user' });
+                    // this.$router.push({ path: '/user' });
+                    this.back();
                 })
                 .catch(err => {
                     console.error('user logout fail' + err);
