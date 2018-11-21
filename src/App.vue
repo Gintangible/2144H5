@@ -27,12 +27,9 @@ export default {
         }
     },
     created() {
-        // this.$axios.get('/login').then(response => {
-        //     if (response.data.code === ERR_OK) {
-        //         console.log(response.data);
-        //         this.$store.dispatch('login/loginData', response.data);
-        //     }
-        // });
+        const token = this.$store.state.user.token;
+
+        token && this.$store.dispatch('user/getUserInfo', token);
     }
 };
 </script>

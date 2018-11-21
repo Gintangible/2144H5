@@ -52,8 +52,8 @@ const actions = {
                     commit('SET_TOKEN', data.token);
                     commit('SET_ISVERIFIED', data.isVerified);
                     commit('SET_ISPHONE', data.isPhone);
+                    resolve(data);
                 }
-                resolve();
             }).catch(error => {
                 reject(error);
             });

@@ -31,7 +31,7 @@ axios.interceptors.response.use(function (response) {
 
 router.beforeEach((to, from, next) => {
     // const token = store.getters.userInfo;
-    if (to.matched.some(record => record.meta.requiresAuth) && Cookie.get('token')) {
+    if (to.matched.some(record => record.meta.requiresAuth) && !Cookie.get('token')) {
         next({
             path: '/login'
         });

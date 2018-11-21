@@ -3,7 +3,7 @@ const Mock = require('mockjs');
 // 获取 mock.Random 对象
 const Random = Mock.Random;
 // mock一组数据
-const loginData = Random.boolean() ? {
+const loginData = {
     code: 200,
     uid: Random.natural(10),
     name: Random.cname(),
@@ -11,7 +11,7 @@ const loginData = Random.boolean() ? {
     isPhone: Random.boolean(),
     isVerified: Random.boolean(),
     token: Random.word(11)
-} : '';
+};
 
 const loginOutData = {
     code: 200
